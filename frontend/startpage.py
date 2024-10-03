@@ -12,7 +12,7 @@ class ShotPutGame(ctk.CTk):
         
         # Initialize Pygame mixer for background music
         pygame.mixer.init()
-        pygame.mixer.music.load(r"D:\Computer Science\internal project\ds\frontend\music.mp3")
+        pygame.mixer.music.load("./music.mp3")
         pygame.mixer.music.play(loops=1)
 
         # Load the main image
@@ -24,7 +24,7 @@ class ShotPutGame(ctk.CTk):
         self.label.pack(pady=50)
 
         # Load the button image
-        button_img = Image.open(r"D:\Computer Science\internal project\ds\images\arrow.jpg")
+        button_img = Image.open(r"D:\Computer Science\internal project\ds\ball-sort-\images\arrow.jpg")
         button_img = button_img.resize((30, 30), Image.LANCZOS)
         self.button_photo = ctk.CTkImage(button_img)
 
