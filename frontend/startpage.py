@@ -32,7 +32,7 @@ class Game(ctk.CTk):
 
 
         # Load the button image
-        button_img = Image.open("./Images/arrow.jpg")
+        button_img = Image.open("./Images/play.png")
         button_img = button_img.resize((30, 30), Image.LANCZOS)
         self.button_photo = ctk.CTkImage(button_img)
 
