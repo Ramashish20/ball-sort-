@@ -1,7 +1,7 @@
 import customtkinter as ctk
 import pygame
 from PIL import Image, ImageTk
-from gamestart import BallSortGame
+from gui import BallSortGame
 
 class Game(ctk.CTk):
     def __init__(self):
@@ -54,7 +54,7 @@ class Game(ctk.CTk):
 
         self.music = ctk.CTkButton(
         self,
-        image=self.resizable_Images("./Images/music.png", 30, 30,), text="",
+        image=self.resizable_Images("./Images/musicplay.png", 30, 30,), text="",
         command=self.toggle_music,
         fg_color="#ede8d0", bg_color="#060644",
         corner_radius=10,
@@ -77,14 +77,14 @@ class Game(ctk.CTk):
         ballsort.mainloop()
 
     def toggle_music(self):
-        if self.is_music_playing:
-            # Stop the music
+        if self.is_music_playing==1:
             pygame.mixer.music.stop()
             self.is_music_playing = 0
+            self.music.configure(image=self.resizable_Images("./Images/music.png", 30, 30))
         else:
-            # Start the music again
             pygame.mixer.music.play(loops=-1)
             self.is_music_playing = 1
+            self.music.configure(image=self.resizable_Images("./Images/musicplay.png", 30, 30))
 
     def resizable_Images(self, image_path, x, y):
         image = Image.open(image_path)
