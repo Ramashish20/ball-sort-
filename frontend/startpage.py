@@ -15,32 +15,29 @@ class Game(ctk.CTk):
         
         #doing the window in middle 
         self.middle(800,550)
-    
+
+        self.is_music_playing=1
+
         # Initialize Pygame mixer for background music
         pygame.mixer.init()
         pygame.mixer.music.load(r"./music/perfect-beauty-191271.mp3")
         pygame.mixer.music.play(loops=1)
 
-        # Load the main image
-        self.img = Image.open("./Images/startphoto.png")
-        self.photo = ImageTk.PhotoImage(self.img)
+
 
         # Create and pack the main label with the image
-        self.label = ctk.CTkLabel(self, text="",image=self.photo)
+        self.label = ctk.CTkLabel(self, text="",image=self.resizable_Images("./Images/startphoto.png",500,450))
         self.label.grid(row=0,column=0)
        
 
 
-        # Load the button image
-        button_img = Image.open("./Images/play.png")
-        button_img = button_img.resize((30, 30), Image.LANCZOS)
-        self.button_photo = ctk.CTkImage(button_img)
+   
 
         # Create and pack the play button
         self.play_button = ctk.CTkButton(
             self,
             text="Play",
-            image=self.button_photo,
+            image=self.resizable_Images("./Images/play.png",30,30),
             compound="left",
             corner_radius=10,
             height=40,
@@ -52,8 +49,19 @@ class Game(ctk.CTk):
             font=("Helvetica", 14, "bold"),
             command=self.on_click
         )
-        self.play_button.grid(row=0,column=0,sticky="s",pady=40)
+        self.play_button.place(relx=0.41,rely=0.8)
         self.play_button.lift()
+
+        self.music = ctk.CTkButton(
+        self,
+        image=self.resizable_Images("./Images/music.png", 30, 30,), text="",
+        command=self.toggle_music,
+        fg_color="#ede8d0", bg_color="#060644",
+        corner_radius=10,
+        border_color="black", border_width=2,
+        width=20, hover_color="white",
+    )
+        self.music.grid(row=2,pady=10)
 
     def middle(self,width,height):
         screen_width = self.winfo_screenwidth()
@@ -68,6 +76,21 @@ class Game(ctk.CTk):
         ballsort=BallSortGame()
         ballsort.mainloop()
 
+    def toggle_music(self):
+        if self.is_music_playing:
+            # Stop the music
+            pygame.mixer.music.stop()
+            self.is_music_playing = 0
+        else:
+            # Start the music again
+            pygame.mixer.music.play(loops=-1)
+            self.is_music_playing = 1
+
+    def resizable_Images(self, image_path, x, y):
+        image = Image.open(image_path)
+        imageresize = image.resize((x, y))
+        readyimage = ImageTk.PhotoImage(imageresize)
+        return readyimage
 
 if __name__ == "__main__":
     game = Game()

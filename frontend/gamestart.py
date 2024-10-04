@@ -41,7 +41,7 @@ NUM_TUBES = 6
 NUM_COLORS = 4
 
 # Colors for balls
-BALL_COLORS = ["red", "blue", "green", "violet", "yellow"]
+BALL_COLORS = ["#ff3131", "#38b6ff", "#00bf63", "#ffde59","green"]
 
 # Generate random tubes
 def generate_tubes():
@@ -113,8 +113,7 @@ class BallSortGame(ctk.CTk):
         self.draw_tubes()
 
         # Ball sort heading text
-        ctk.CTkLabel(self, text="Ball Sort", text_color="black", font=("Times", 50, "bold"), fg_color="#ebd469").grid(
-            row=0, column=0, columnspan=10, sticky="nsew")
+        ctk.CTkLabel(self, text="Ball Sort", text_color="black", font=("Times", 50, "bold"), fg_color="#ebd469").grid(ipadx=100,row=0, column=0, columnspan=10, sticky="nsew")
 
         # Add the Undo button
         self.undo_button = ctk.CTkButton(
